@@ -16,7 +16,7 @@
 
     <header>
         <div class="d-flex justify-content-between align-items-center">
-            <a href="#">
+            <a href="home-starter-page.html">
                 <img src="img/logo.jpg" alt="" class="ml-4">
             </a>
 
@@ -27,9 +27,9 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light border border-secondary">
 
         <ul class="nav">
-    
+
             <li class="nav-item"><a href="home-starter-page.html" class="nav-link">Home</a></li>
-    
+
             <li class="nav-item">
                 <a href="#" data-toggle="collapse" data-target="#demo" class="nav-link">Congress 113</a>
                 <ul id="demo" class="collapse">
@@ -37,7 +37,7 @@
                     <li><a href="house-starter-page.html" class="nav-link">House</a></li>
                 </ul>
             </li>
-    
+
             <li class="nav-item">
                 <a href="#" data-toggle="collapse" data-target="#demo1" class="nav-link">Attendance</a>
                 <ul id="demo1" class="collapse">
@@ -45,7 +45,7 @@
                     <li><a href="house_congress-attendance-starter-page.html" class="nav-link">House</a></li>
                 </ul>
             </li>
-    
+
             <li>
                 <a href="#" class="nav-link" data-toggle="collapse" data-target="#demo2">Party Loyalty</a>
                 <ul id="demo2" class="collapse">
@@ -55,76 +55,109 @@
             </li>
         </ul>
     </nav>
-    <div class="row border-bottom">
+    <div id="app">
+        <div class="row border-bottom">
 
-        <div class="col-sm-6 ml-0 mt-5 mb-5 mr-5 pr-5">
-            <h2 class="ml-5">Attendance</h2>
-            <p class="ml-3"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;The Constitution specifies that a majority of members
-                constitutes a
-                quorum to do business in each house.
-                Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in
-                most
-                cases, debates continue even if
-                a majority is not present.</p>
+            <div class="col-sm-6 ml-0 mt-5 mb-5 mr-5 pr-5">
+                <h2 class="ml-5">Attendance</h2>
+                <p class="ml-3"> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;The Constitution specifies that a majority of members
+                    constitutes a
+                    quorum to do business in each house.
+                    Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus,
+                    in
+                    most
+                    cases, debates continue even if
+                    a majority is not present.</p>
 
-            <p class="ml-3">The Senate uses roll-call votes; a clerk calls out the names of all the senators, each
-                senator stating
-                "aye"
-                or "no" when his or her name is announced. The House reserves roll-call votes for the most formal
-                matters,
-                as a roll-call of all 435 representatives
-                takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in
-                question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+                <p class="ml-3">The Senate uses roll-call votes; a clerk calls out the names of all the senators, each
+                    senator stating
+                    "aye"
+                    or "no" when his or her name is announced. The House reserves roll-call votes for the most formal
+                    matters,
+                    as a roll-call of all 435 representatives
+                    takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion
+                    in
+                    question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+            </div>
+            <div class="col-sm-5 ml-0 mt-5 mb-5">
+                <h2 class="text-right">Senate at a glance</h2>
+                <table class="table table-striped text-center">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Party</th>
+                            <th>Number of Reps</th>
+                            <th>% Voted with Prty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Republicans</td>
+                            <td>{{statistics.numberOfRepublicans}}</td>
+                            <td>{{statistics.votedWPartyRepPct}}</td>
+                        </tr>
+                        <tr>
+                            <td>Democrats</td>
+                            <td>{{statistics.numberOfDemocrats}}</td>
+                            <td>{{statistics.votedWPartyDemPct}}</td>
+                        </tr>
+                        <tr>
+                            <td>Independents</td>
+                            <td>{{statistics.numberOfIndependents}}</td>
+                            <td>{{statistics.votedWPartyIndPct}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{statistics.numberOfRepr}}</td>
+                            <td>{{statistics.avgTotalPct}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-sm-5 ml-0 mt-5 mb-5">
-            <h2 class="text-right">Senate at a glance</h2>
-            <table class="table table-striped text-center">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Party</th>
-                        <th>Number of Reps</th>
-                        <th>% Voted with Prty</th>
-                    </tr>
-                </thead>
-                <tbody id="attendence">
-                </tbody>
-            </table>
+
+        <div class="row mt-5">
+            <div class="col-sm-6 ">
+                <h2>Least Engaged (Bottom 10% Attendance)</h2>
+                <table class="table table-striped text-center">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="senator in least">
+                            <td><a v-bind:href="senator.url"> {{senator.first_name}} {{senator.middle_name}}
+                                    {{senator.last_name}}</a></td>
+                            <td>{{senator.missed_votes }}</td>
+                            <td>{{senator.missed_votes_pct}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <h2>Most Engaged (Top 10% Attendance)</h2>
+                <table class="table table-striped text-center">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="senator in most">
+                            <td><a v-bind:href="senator.url"> {{senator.first_name}} {{senator.middle_name}}
+                                    {{senator.last_name}}</a></td>
+                            <td>{{senator.missed_votes }}</td>
+                            <td>{{senator.missed_votes_pct}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-    <div class="row mt-5">
-        <div class="col-sm-6 ">
-            <h2>Least Engaged (Bottom 10% Attendance)</h2>
-            <table class="table table-striped text-center">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody id="least">
-
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-6">
-            <h2>Most Engaged (Top 10% Attendance)</h2>
-            <table class="table table-striped text-center">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody id="most">
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 
     <div class="container-fluid">
         <footer class="page-footer font-small mt-5 border border-dark bg-secondary">
@@ -137,8 +170,10 @@
         </footer>
     </div>
 
-    <script src="pro-congress-113-house.js"></script>
-    <script src="statisticsAttendanceCongress.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <script src="./js/fetchAll.js"></script>
+    <script src="./js/statisticsAttendanceCongress.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

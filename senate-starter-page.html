@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="d-flex justify-content-between align-items-center">
-            <a href="#">
+            <a href="home-starter-page.html">
                 <img src="img/logo.jpg" alt="" class="ml-4">
             </a>
 
@@ -56,10 +56,6 @@
         </ul>
     </nav>
 
-    <header>
-        <div>
-        </div>
-    </header>
     <!--Table container-->
     <div class="container ml-0 mt-5 mb-5">
         <h2>Senators</h2>
@@ -73,42 +69,29 @@
             uniformed officers, as well as trial of federal officials impeached by the House.
         </p>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" id="app">
         <table class="table table-striped text-center">
             <thead class="thead-light">
                 <tr>
-                    <th>Name</th>
-                    <th>Party</th>
+                    <th>Representative</th>
+                    <th>Party Affiliation</th>
                     <th>State</th>
-                    <th>Senority</th>
-                    <th>Votes with party %</th>
+                    <th>Seniority</th>
+                    <th>Percentage of votes</th>
                 </tr>
             </thead>
-
-
-            <tbody id="senate-data">
-
+            <tbody>
+                <tr v-for="senator in members">
+                    <td><a v-bind:href="senator.url"> {{senator.first_name}} {{senator.middle_name}}
+                            {{senator.last_name}}</a></td>
+                    <td>{{senator.party}}</td>
+                    <td>{{senator.state}}</td>
+                    <td>{{senator.seniority}}</td>
+                    <td>{{senator.votes_with_party_pct}}</td>
+                </tr>
             </tbody>
-
-
-            
         </table>
     </div>
-
-    
-    <div class="container" id="app">
-        <tbody>
-            <tr v-for="senators in senators">
-                <td>{{senators.first_name}} {{senators.middle_name}} {{senators.last_name}}</td>
-                <td>{{senators.party}}</td>
-                <td>{{senators.state}}</td>
-                <td>{{senators.seniority}}</td>
-                <td>{{senators.votes_with_party_pct}}</td>
-            </tr>
-        </tbody>
-    </div>
-
-
 
 
 
@@ -125,10 +108,6 @@
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
-   
-
-    <script src="pro-congress-113-senate.js"></script>
-    <script src="main.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS-->
@@ -137,7 +116,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
+    
+    <script src="./js/starterSenate.js"></script>
 </body>
 
 </html>

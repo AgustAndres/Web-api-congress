@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="d-flex justify-content-between align-items-center">
-            <a href="#">
+            <a href="home-starter-page.html">
                 <img src="img/logo.jpg" alt="" class="ml-4">
             </a>
 
@@ -27,9 +27,9 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-light border border-secondary">
 
         <ul class="nav">
-    
+
             <li class="nav-item"><a href="home-starter-page.html" class="nav-link">Home</a></li>
-    
+
             <li class="nav-item">
                 <a href="#" data-toggle="collapse" data-target="#demo" class="nav-link">Congress 113</a>
                 <ul id="demo" class="collapse">
@@ -37,7 +37,7 @@
                     <li><a href="house-starter-page.html" class="nav-link">House</a></li>
                 </ul>
             </li>
-    
+
             <li class="nav-item">
                 <a href="#" data-toggle="collapse" data-target="#demo1" class="nav-link">Attendance</a>
                 <ul id="demo1" class="collapse">
@@ -45,7 +45,7 @@
                     <li><a href="house_congress-attendance-starter-page.html" class="nav-link">House</a></li>
                 </ul>
             </li>
-    
+
             <li>
                 <a href="#" class="nav-link" data-toggle="collapse" data-target="#demo2">Party Loyalty</a>
                 <ul id="demo2" class="collapse">
@@ -62,13 +62,18 @@
     </header>
     <!--Table container-->
     <div class="container ml-0 mt-5 mb-5">
-            <h2> Congressmen</h2>
-            <p>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate
-                re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the
-                U.S. President in case there is no majority in the Electoral College.</p>
-            <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but every state is entitled to at least one representative. </p>
+        <h2> Congressmen</h2>
+        <p> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; The major power of the House is to pass federal legislation that affects
+            the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S.
+            President before becoming law
+            (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The
+            House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached
+            officials are subsequently tried
+            in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
+        <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but
+            every state is entitled to at least one representative. </p>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" id="app">
         <table class="table table-striped text-center">
             <thead class="thead-light">
                 <tr>
@@ -79,8 +84,15 @@
                     <th>Votes with party %</th>
                 </tr>
             </thead>
-            <tbody id="senate-data">
-
+            <tbody>
+                <tr v-for="house in members">
+                    <td><a v-bind:href="house.url">{{house.first_name}} {{house.middle_name}} {{house.last_name}}</a>
+                    </td>
+                    <td>{{house.party}}</td>
+                    <td>{{house.state}}</td>
+                    <td>{{house.seniority}}</td>
+                    <td>{{house.votes_with_party_pct}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -89,16 +101,16 @@
     <div class="container-fluid">
         <footer class="page-footer font-small mt-5 border border-dark bg-secondary">
 
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3 ">© 2016 TGIF | All Rights Reserved
-            </div>
-            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 ">© 2016 TGIF | All Rights Reserved</div>
 
         </footer>
     </div>
 
-    <script src="pro-congress-113-house.js"></script>
-    <script src="main.js">
+
+
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="./js/starterHouse.js">
     </script>
 
     <!-- Optional JavaScript -->
@@ -112,4 +124,3 @@
 </body>
 
 </html>
-
